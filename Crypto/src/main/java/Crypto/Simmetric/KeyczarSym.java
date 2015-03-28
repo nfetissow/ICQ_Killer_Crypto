@@ -8,6 +8,7 @@ import org.keyczar.exceptions.KeyczarException;
  * Created by nfetissow on 3/28/15.
  */
 public class KeyczarSym implements SimCrypto {
+    private static String workingDir;
     private static String keyPath;
     @Override
     public byte[] encrypt(byte[] data) {
@@ -44,6 +45,16 @@ public class KeyczarSym implements SimCrypto {
     @Override
     public AbstractKey generateKey() {
         return null;
+    }
+
+    @Override
+    public String getWorkingDir() {
+        return workingDir;
+    }
+
+    @Override
+    public void setWorkingDir(String path) {
+        workingDir = path;
     }
 
     @Override

@@ -43,6 +43,16 @@ public class DES implements SimCrypto {
         }
     }
 
+    @Override
+    public String getWorkingDir() {
+        return null;
+    }
+
+    @Override
+    public void setWorkingDir(String path) {
+
+    }
+
 
     @Override
     public byte[] encrypt(byte[] data) {

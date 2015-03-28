@@ -10,4 +10,6 @@ public interface SimCrypto {
     public AbstractKey getKey();
     public AbstractKey generateKey();
     public void setKey(AbstractKey key) throws IncompatibleKeyException;
+    public String getWorkingDir();
+    public void setWorkingDir(String path);
 }
