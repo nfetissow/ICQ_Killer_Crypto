@@ -12,6 +12,29 @@ import java.security.spec.RSAPrivateKeySpec;
 import java.security.spec.RSAPublicKeySpec;
 
 public class RSA implements AsimCrypto {
+    private static String privatePath = "private.key";
+    private static String publicPath = "public.key";
+
+    @Override
+    public String getPublicPath() {
+        return publicPath;
+    }
+
+    @Override
+    public void setPublicPath(String path) {
+        publicPath = path;
+    }
+
+    @Override
+    public String petPrivatePath() {
+        return privatePath;
+    }
+
+    @Override
+    public void setPrivatePath(String path) {
+        privatePath = path;
+    }
+
     public void saveToFile(String fileName,
                            BigInteger mod, BigInteger exp) throws IOException {
         ObjectOutputStream oout = new ObjectOutputStream(
@@ -38,9 +61,9 @@ public class RSA implements AsimCrypto {
             RSAPrivateKeySpec priv = fact.getKeySpec(kp.getPrivate(),
                     RSAPrivateKeySpec.class);
 
-            saveToFile("public.key", pub.getModulus(),
+            saveToFile(publicPath, pub.getModulus(),
                     pub.getPublicExponent());
-            saveToFile("private.key", priv.getModulus(),
+            saveToFile(privatePath, priv.getModulus(),
                     priv.getPrivateExponent());
         } catch (NoSuchAlgorithmException noSuchAlgEx) {
 
@@ -51,8 +74,6 @@ public class RSA implements AsimCrypto {
     }
 
     PublicKey readKeyFromFile(String keyFileName) throws IOException {
-       // InputStream in =
-               // ServerConnection.class.getResourceAsStream(keyFileName);
         FileInputStream in = new FileInputStream(keyFileName);
         ObjectInputStream oin =
                 new ObjectInputStream(new BufferedInputStream(in));
@@ -69,6 +90,12 @@ public class RSA implements AsimCrypto {
             oin.close();
         }
     }
+
+    @Override
+    public void generateKeys() {
+        createKeys();
+    }
+
     @Override
     public byte[] encrypt(byte[] data) {
         try {

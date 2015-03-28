@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: keyczar:keyczar:0.66">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/keyczar/keyczar/0.66/keyczar-0.66.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/keyczar/keyczar/0.66/keyczar-0.66-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/keyczar/keyczar/0.66/keyczar-0.66-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
