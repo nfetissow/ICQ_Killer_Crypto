@@ -4,6 +4,7 @@ import Crypto.Asimmetric.AsimCrypto;
 import Crypto.Asimmetric.KeyczarAsym;
 import Crypto.Asimmetric.RSA;
 import Crypto.Simmetric.DES;
+import Crypto.Simmetric.KeyczarSym;
 import Crypto.Simmetric.SimCrypto;
 
 /**
@@ -27,6 +28,9 @@ public class CryptoFactory {
         switch (realisation) {
             case "DES" : {
                 return new DES();
+            }
+            case "KeyczarSym" : {
+                return new KeyczarSym();
             }
             default: {
                 throw new NoSuchCryptoRealisationException();

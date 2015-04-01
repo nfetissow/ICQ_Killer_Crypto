@@ -11,16 +11,26 @@ import org.junit.Test;
  */
 public class SymCryptoTest {
     public static String algorithm;
+    public static String workingDir;
+    public static SimCrypto crypto;
 
     @BeforeClass
     public static void onlyOnce() {
-        algorithm = "RSA";
+        algorithm = "DES";
+        workingDir = "/home/nfetissow/Documents/GitHub/ICQ_Killer_Crypto/Crypto/src/simm/";
+        try {
+            crypto = CryptoFactory.getSimInstance(algorithm);
+            crypto.setWorkingDir(workingDir);
+            crypto.setKey(crypto.generateKey());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Test
     public void CheckRealisation() {
         try {
-            AsimCrypto crypto = CryptoFactory.getAsimInstance(algorithm);
+            SimCrypto crypto = CryptoFactory.getSimInstance(algorithm);
         } catch (NoSuchCryptoRealisationException exc) {
             exc.printStackTrace();
             Assert.assertTrue(1 == 0);
@@ -30,7 +40,6 @@ public class SymCryptoTest {
     @Test
     public void CheckIfItActuallyCrypts() {
         try {
-            SimCrypto crypto = CryptoFactory.getSimInstance(algorithm);
             String str = "Secret message";
             byte[] crypted = crypto.encrypt(str.getBytes());
             Assert.assertFalse(str.getBytes().equals(crypted));
@@ -41,9 +50,8 @@ public class SymCryptoTest {
     }
 
     @Test
-    public void AsymCryptoIntegrity() {
+    public void SymCryptoIntegrity() {
         try {
-            SimCrypto crypto = CryptoFactory.getSimInstance(algorithm);
             String str = "Secret message";
             byte[] crypted = crypto.encrypt(str.getBytes());
             String restored = new String(crypto.decrypt(crypted));

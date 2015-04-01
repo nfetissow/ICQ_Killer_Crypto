@@ -3,8 +3,10 @@ import Crypto.CryptoFactory;
 import Crypto.NoSuchCryptoRealisationException;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore
 public class AsymCryptoTest {
     public static String algorithm;
 
