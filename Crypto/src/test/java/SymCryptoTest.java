@@ -1,6 +1,8 @@
 import Crypto.Asimmetric.AsimCrypto;
 import Crypto.CryptoFactory;
 import Crypto.NoSuchCryptoRealisationException;
+import Crypto.Simmetric.AbstractKey;
+import Crypto.Simmetric.IncompatibleKeyException;
 import Crypto.Simmetric.SimCrypto;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -16,8 +18,8 @@ public class SymCryptoTest {
 
     @BeforeClass
     public static void onlyOnce() {
-        algorithm = "DES";
-        workingDir = "/home/nfetissow/Documents/GitHub/ICQ_Killer_Crypto/Crypto/src/simm/";
+        algorithm = "KeyczarSym";
+        workingDir = "C:\\temp\\";
         try {
             crypto = CryptoFactory.getSimInstance(algorithm);
             crypto.setWorkingDir(workingDir);
@@ -58,6 +60,19 @@ public class SymCryptoTest {
             Assert.assertEquals(str, restored);
         } catch (Exception e) {
             e.printStackTrace();
+            Assert.assertTrue(1 == 0);
+        }
+    }
+
+    @Test
+    public void KeySerialization() {
+        AbstractKey key = crypto.getKey();
+        byte[] array = key.toBytes();
+        try {
+            crypto.setKey(AbstractKey.fromBytes(array));
+            CheckIfItActuallyCrypts();
+        } catch (IncompatibleKeyException incomKeyEx) {
+            incomKeyEx.printStackTrace();
             Assert.assertTrue(1 == 0);
         }
     }

@@ -57,9 +57,9 @@ public class KeyczarAsym implements AsimCrypto {
     @Override
     public void generateKeys() {
 
-        KeyczarTool.main(new String[] {"create",  "--location=" + privpath,  "--purpose=crypt", "--asymmetric=rsa"});
+        KeyczarTool.main(new String[] {"create",  "--location=/" + privpath,  "--purpose=crypt", "--asymmetric=rsa"});
         KeyczarTool.main(new String[] {"addKey",  "--location=/" + privpath, "--status=primary"});
-        KeyczarTool.main(new String[] {"pubkey", "--location=/" + privpath , "--destination=" + pubpath});
+        KeyczarTool.main(new String[] {"pubkey", "--location=/" + privpath , "--destination=/" + pubpath});
 
     }
 
